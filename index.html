@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+
+    <title>塾連携コード|生徒用</title>
+    <style>
+        :root {
+            --A4-width: 595px;
+            --A4-height: 842px;
+            --canvas-width: 510px;
+            --canvas-height: 742px;
+            --border: 2px solid black;
+        }
+
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans JP", sans-serif;
+            background-color: lightgray;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.7rem;
+            margin: 0;
+        }
+
+        @page {
+            margin: 0mm 5mm;
+            size: A4 portrait;
+        }
+
+        /* A4 の紙を想定した canvas */
+        .bass_canvas {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            width: var(--A4-width);
+            height: var(--A4-height);
+            background-color: white;
+        }
+
+        /* タイトルエリア */
+        .column_tittle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 6rem;
+            height: 52px;
+            width: var(--canvas-width);
+            border: var(--border);
+        }
+
+        /* 連家内容表示エリア */
+        .registration {
+            display: inline-flex;
+            flex-direction: column;
+            width: var(--canvas-width);
+            border: var(--border);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .registration-column {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .left-column {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            flex-flow: column;
+        }
+
+        .right-column {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+            flex-flow: column;
+        }
+
+        .items {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .item-name {
+            text-align: justify;
+        }
+
+        #colab_info {
+            width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* QR コードエリア */
+        .QR-column {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: var(--canvas-width);
+
+        }
+
+        .QR-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 180px;
+        }
+
+        .QR-area img {
+            width: 160px;
+            height: 160px;
+        }
+
+        .linkage-Code {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin: 1rem 0;
+        }
+
+        .url-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            margin: 1rem 0;
+        }
+
+        /* お知らせエリア */
+        .notice-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: var(--canvas-width);
+            height: 190px;
+            border: var(--border);
+        }
+
+        .notice {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 95%;
+        }
+
+        .notice h3 {
+            font-size: 1.5rem;
+            text-align: justify;
+            margin: 0.1rem 0;
+        }
+
+        .notice p {
+            font-size: 1.4rem;
+            text-align: justify;
+            text-indent: -1.5rem;
+            padding-left: 1em;
+        }
+
+        /* 登録日エリア */
+        .registration-Date {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+            width: var(--canvas-width);
+        }
+
+        .registration-Date p {
+            font-size: 1.5rem;
+        }
+
+        /* 縦余白 🐼🐼🐼 */
+        .gap-5 {
+            height: 5px;
+        }
+
+        .gap-10 {
+            height: 10px;
+        }
+
+        .gap-15 {
+            height: 15px;
+        }
+
+        /* 横いっぱいの線 */
+        .border {
+            border: 1px dashed black;
+            width: var(--canvas-width);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bass_canvas">
+            <div class="column_tittle">
+                <h1 class="tittle">
+                    KK-BOOK&nbsp;塾・学校連携&thinsp;QR&thinsp;コード
+                </h1>
+            </div>
+            <div class="gap-15"></div>
+            <div class="registration">
+                <p id="colab_info">【連携内容】</p>
+                <div class="registration-column">
+                    <div class="left-column">
+                        <div class="items">
+                            <p>塾・学校名：</p>
+                            <p id="school_name">中田塾</p>
+                        </div>
+                        <div class="items">
+                            <p>氏&emsp;名：</p>
+                            <p id="student_name">斎藤太郎</p>
+                        </div>
+                        <div class="items">
+                            <p>学&emsp;年：</p>
+                            <p id="grade_number">2年</p>
+                        </div>
+                    </div>
+
+                    <div class="right-column">
+                        <div class="items">
+                            <p>生徒番号：</p>
+                            <p id="student_number">0001</p>
+                        </div>
+                        <div class="items">
+                            <p>クラス：</p>
+                            <p id="student_class">スタンダード</p>
+                        </div>
+                        <div class="items">
+                            <p>備&emsp;考：</p>
+                            <p id="remarks">上北沢教室</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="gap-5"></div>
+            <div class="gap-15"></div>
+            <div class="border"></div>
+            <div class="gap-10"></div>
+            <div class="QR-column">
+                <div class="QR-area">
+                    <img id="QR_CODE" src="./dumyQR.png" alt="QRコード" />
+                </div>
+                <div class="linkage-Code">
+                    <h2>連携コード：</h2>
+                    <h2 id="linkage_Code_number">77f9a25c38x21</h2>
+                </div>
+                <div class="url-link">
+                    <h2>URL：</h2>
+                    <h2 id="url_link">https://kk-book.kyo-kai.co.jp/school</h2>
+                </div>
+            </div>
+            <div class="gap-15"></div>
+            <div class="notice-column">
+                <div class="notice">
+                    <h3>■&thinsp;塾・学校との連携手順 </h3>
+                    <h3> ★&thinsp;次のどちらかの方法で手続きしてください。 </h3>
+                    <div class="gap-10"></div>
+                    <p>
+                        ・QR&thinsp;コードを読み込む場合：「塾・学校登録画面」に上記【連携内容】が正しく表示されていることを確認し、登録ボタンを押してください。
+                    </p>
+                    <p>
+                        ・URL&thinsp;を入力してアクセスする場合：「塾・学校登録画面」で上記「連携コード」を入力し、「読み込み」ボタンを押して、【連携内容】が正しく表示されていることを確認し、登録ボタンを押してください。
+                    </p>
+                </div>
+
+            </div>
+            <div class="gap-15"></div>
+            <div class="registration-Date">
+                <p>QR&thinsp;コード発行日</p>
+                <p id="registration_Date">2024/11/28</p>
+            </div>
+        </div>
+</body>
+
+</html>
